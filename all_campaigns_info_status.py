@@ -4,8 +4,7 @@ import requests
 import pandas as pd
 from dotenv import load_dotenv
 
-# Cargar credenciales
-load_dotenv()
+# Cargar variables de entorno
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
 
 # Elegir rango de fechas
@@ -109,3 +108,4 @@ if paused_campaigns:
 else:
 
     print("\n✅ All campaign are running. ¡Everything is ok!")
+
