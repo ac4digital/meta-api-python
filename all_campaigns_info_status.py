@@ -1,4 +1,5 @@
 import os
+import io
 import requests
 import pandas as pd
 from dotenv import load_dotenv
@@ -30,7 +31,8 @@ def get_campaign_status(campaign_id, access_token):
 # Cargar archivo con campañas
 print("📥 Loading campaigns from campaigns.csv...")
 try:
-    campaigns_df = pd.read_csv("campaigns_info.csv")
+    csv_data = os.getenv("CAMPAIGNS_CSV")
+    campaigns_df = pd.read_csv(io.StringIO(csv_data))
 except FileNotFoundError:
     print("❌ File campaigns.csv not found.")
     exit()
@@ -105,4 +107,5 @@ if paused_campaigns:
     for campaign in paused_campaigns:
         print(f"- {campaign['name']} ({campaign['id']})")
 else:
+
     print("\n✅ All campaign are running. ¡Everything is ok!")
